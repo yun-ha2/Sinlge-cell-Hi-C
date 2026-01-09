@@ -42,3 +42,23 @@ cell_id.npz
  ├─ chr1 → scipy.sparse.csr_matrix
  ├─ chr2 → scipy.sparse.csr_matrix
  ├─ ...
+
+---
+
+## Usage
+
+Preprocessing is executed via CLI scripts located in the scripts/ directory:
+
+```text
+python scripts/preprocess_lee.py --help
+python scripts/preprocess_nagano.py --help
+
+Refer to individual scripts for dataset-specific options.
+
+---
+
+## Note
+
+Dataset-specific differences are intentionally handled only at the
+preprocessing stage. All downstream components operate on the same
+data representation.
