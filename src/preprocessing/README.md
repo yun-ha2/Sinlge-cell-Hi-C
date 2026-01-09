@@ -42,6 +42,7 @@ cell_id.npz
  ├─ chr1 → scipy.sparse.csr_matrix
  ├─ chr2 → scipy.sparse.csr_matrix
  ├─ ...
+```
 
 ---
 
