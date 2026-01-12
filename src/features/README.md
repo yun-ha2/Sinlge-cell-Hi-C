@@ -70,6 +70,7 @@ bin_dna_features.npz
 - Ensures consistent node ordering across feature types
 
 - Produces unified node features for graph construction
+
 **Outputs**
 ```text
 <cell_id>.npz
@@ -88,7 +89,7 @@ feature dimensions, and output paths.
 ## Notes
 
 - Feature extraction is fully decoupled from model training
-- 
+
 - All downstream graph models operate on the same feature format
 
 
