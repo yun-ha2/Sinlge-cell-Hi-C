@@ -8,9 +8,6 @@ The goal of preprocessing is to convert heterogeneous raw scHi-C formats
 representation, and to further interpret these representations as graph
 structures suitable for graph-based learning.
 
-Dataset-specific differences are handled only at this stage, ensuring that
-all downstream components operate on the same data representation.
-
 ---
 
 ## Supported Datasets
