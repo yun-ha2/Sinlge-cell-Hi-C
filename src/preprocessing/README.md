@@ -4,8 +4,12 @@ This directory contains dataset-specific preprocessing pipelines for
 single-cell Hi-C (scHi-C) data.
 
 The goal of preprocessing is to convert heterogeneous raw scHi-C formats
-into a unified, chromosome-wise sparse matrix representation that can be
-shared across downstream analysis and graph learning pipelines.
+(e.g. Lee, Nagano) into a unified, chromosome-wise sparse matrix
+representation, and to further interpret these representations as graph
+structures suitable for graph-based learning.
+
+Dataset-specific differences are handled only at this stage, ensuring that
+all downstream components operate on the same data representation.
 
 ---
 
@@ -21,20 +25,9 @@ shared across downstream analysis and graph learning pipelines.
 
 ---
 
-## What Preprocessing Does
-
-- Loads dataset-specific raw scHi-C files
-- Removes unwanted chromosomes (e.g., chrX, chrY, chrM)
-- Constructs chromosome-wise contact matrices at a fixed resolution
-- Applies optional cell-level quality control
-- Saves results in a unified `.npz` format
-
-Each output file corresponds to a single cell.
-
----
-
 ## Output Format
 
+### 1. Chromosome-wise contact matrices (`.npz`)
 All preprocessing pipelines produce compressed `.npz` files with the same structure:
 
 ```text
@@ -42,6 +35,53 @@ cell_id.npz
  ├─ chr1 → scipy.sparse.csr_matrix
  ├─ chr2 → scipy.sparse.csr_matrix
  ├─ ...
+```
+### 2.scHi-C graph inputs (`.pt`)
+This step converts the standardized scHi-C representations stored in .npz
+files into graph inputs suitable for graph neural networks.
+
+Graph inputs are constructed by combining chromosome-wise contact matrices
+and node features:
+
+#### Inputs
+```text
+contact_dir/<cell_id>.npz   # chromosome-wise contact matrices
+feature_dir/<cell_id>.npz   # chromosome-wise node features
+```
+
+#### Output
+```text
+<cell_id>_<chrom>.pt
+```
+
+
+Each file corresponds to a single chromosome from one cell and contains a
+PyTorch Geometric graph:
+```text
+Data(
+  x,          # node features
+  edge_index, # sparse edge list
+  edge_attr   # contact counts
+)
+```
+
+
+### 3. Cell-level embeddings 
+
+Cell-level embeddings are computed from the standardized per-cell contact matrices (`.npz`)
+using a scHiCluster-style preprocessing (coverage normalization + sqrtVC) followed by PCA/SVD.
+These embeddings are used as targets for the cosine alignment loss during model training.
+
+#### Input
+
+```text
+contact_dir/<cell_id>.npz   # chromosome-wise contact matrices
+```
+
+#### Output
+```text
+cell_embeddings.npy   # (n_cells, d) PCA embedding vectors
+cell_names.txt        # cell_id list aligned with rows in cell_embeddings.npy
 ```
 
 ---
