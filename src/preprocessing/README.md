@@ -40,13 +40,14 @@ files into graph inputs suitable for graph neural networks.
 Graph inputs are constructed by combining chromosome-wise contact matrices
 and node features:
 
-#### Inputs
+**Inputs**
+
 ```text
 contact_dir/<cell_id>.npz   # chromosome-wise contact matrices
 feature_dir/<cell_id>.npz   # chromosome-wise node features
 ```
 
-#### Output
+**Outputs**
 ```text
 <cell_id>_<chrom>.pt
 ```
@@ -69,13 +70,13 @@ Cell-level embeddings are computed from the standardized per-cell contact matric
 using a scHiCluster-style preprocessing (coverage normalization + sqrtVC) followed by PCA/SVD.
 These embeddings are used as targets for the cosine alignment loss during model training.
 
-#### Input
+**Inputs**
 
 ```text
 contact_dir/<cell_id>.npz   # chromosome-wise contact matrices
 ```
 
-#### Output
+**Outputs**
 ```text
 cell_embeddings.npy   # (n_cells, d) PCA embedding vectors
 cell_names.txt        # cell_id list aligned with rows in cell_embeddings.npy
