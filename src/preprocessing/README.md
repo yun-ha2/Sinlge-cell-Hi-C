@@ -22,7 +22,7 @@ structures suitable for graph-based learning.
 
 ---
 
-## Output Format
+## Data Format
 
 ### 1. Chromosome-wise contact matrices (`.npz`)
 All preprocessing pipelines produce compressed `.npz` files with the same structure:
@@ -33,7 +33,7 @@ cell_id.npz
  ├─ chr2 → scipy.sparse.csr_matrix
  ├─ ...
 ```
-### 2.scHi-C graph inputs (`.pt`)
+### 2. scHi-C graph inputs (`.pt`)
 This step converts the standardized scHi-C representations stored in .npz
 files into graph inputs suitable for graph neural networks.
 
