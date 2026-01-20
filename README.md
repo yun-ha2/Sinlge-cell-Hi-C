@@ -180,3 +180,4 @@ optional arguments:
 - In the Nagano mouse embryonic stem cell dataset, latent embeddings formed a continuous trajectory corresponding to cell-cycle progression (G1 → early S → mid S → G2), indicating that scGRAPE preserves dynamic biological structure in latent space.
 - In the Lee human prefrontal cortex dataset, major glial cell types (e.g., oligodendrocytes and microglia) were clearly separable, whereas neuronal subtypes were not reliably resolved in the latent space.
 - As resolution increased, extreme sparsity in scHi-C data reduced cluster separability, highlighting fundamental limits imposed by single-cell contact sparsity.
+
