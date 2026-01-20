@@ -25,5 +25,6 @@ This repository provides an end-to-end pipeline from raw scHi-C contact matrices
 - By integrating sequence embeddings derived from the large-scale DNA foundation model **HyenaDNA** as node features, scGRAPE incorporates sequence-level structural priors beyond raw contact intensity.
 - The learned latent space consistently captures biologically meaningful variations in 3D genome architecture across cells and resolutions.
 - Furthermore, scGRAPE enables unified downstream analyses—including chromatin loop prediction, TAD boundary detection, and A/B compartment inference—within a single, coherent latent representation framework.
+
   
 --- 
