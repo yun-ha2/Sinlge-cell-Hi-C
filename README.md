@@ -108,7 +108,7 @@ required arguments:
 ### 5. Inference & Downstream Analysis
 scGRAPE supports multiple downstream analyses from pretrained or fine-tuned models. All inference steps operate on either scHi-C graphs (`.pt`) or latent embeddings (`.z.npz`) and are designed as standalone CLI tools.
 
-#### Loop Prediction
+#### 1) Loop Prediction
 Predict chromatin loops using a loop-fine-tuned scGRAPE model.
 ```code
 python scripts/predict_loops.py [-h]
@@ -118,7 +118,7 @@ python scripts/predict_loops.py [-h]
   --out_dir OUT_DIR                Output directory for loop predictions
 ```
 
-#### TAD Boundary Detection
+#### 2) TAD Boundary Detection
 Extract TAD boundaries from latent node embeddings (`.z.npz`).
 ```code
 python scripts/downstream/tad_from_z.py [-h]
@@ -137,10 +137,10 @@ optional arguments:
   --consensus_vote FLOAT           Consensus vote threshold
   --consensus_min_sep_bins INT     Minimum boundary separation (bins)
 ```
-#### A/B Compartment
+#### 3) A/B Compartment
 Compartment analysis is performed in two steps: (i) training a GMM-HMM and (ii) applying it to latent embeddings.
 
-##### Train GMM-HMM for compartment calling 
+-  **Train GMM-HMM for compartment calling**
 ```code
 python scripts/train_compartment_hmm.py [-h]
 required arguments:
@@ -154,7 +154,7 @@ optional arguments:
   --standardize                    Standardize embeddings before training
   --pca_dim INT                    PCA dimension (0 to disable)
 ```
-##### Infer A/B compartments
+- **Infer A/B compartments**
 ```code
 python python scripts/downstream/compartment_from_z.py [-h]
 required arguments:
