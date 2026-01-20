@@ -88,6 +88,12 @@ optional arguments:
 ```
 
 #### Fine-tuning (Loop prediction)
+`finetune_loops.py` loads a pretrained model, attaches a loop prediction head,
+and optimizes a multi-task objective.
+- Reconstruction, cosine alignment, and loop BCE loss
+- Supervised fine-tuning using reference chromatin loops
+
+```code
 python finetune_loops.py [-h]
 required arguments:
   --train_dir TRAIN_DIR            Directory containing training .pt graphs
@@ -98,5 +104,6 @@ required arguments:
   --pretrain_model PRETRAIN_MODEL  Path to pretrained model checkpoint
   --out_dir OUT_DIR                Output directory for fine-tuned models
 ```
+
 
 
