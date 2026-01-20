@@ -42,3 +42,22 @@ python scripts/preprocess_lee.py --help
 python scripts/preprocess_nagano.py --help
 ```
 - Details: src/preprocessing/README.md
+
+### 2. Construct node features
+Build node features for each genomic bin using sequence- and structure-derived information.
+
+```code
+python scripts/embed_dna_hyenadna.py
+python scripts/compute_ldp.py
+python scripts/merge_ldp_dna.py
+```
+- Details: src/features/README.md
+
+### 3. Build scHi-C graphs
+Combine standardized contact matrices and node features into per-(cell, chromosome) graph objects compatible with PyTorch Geometric(.pt).
+
+```code
+python scripts/preprocess_lee.py --help
+python scripts/preprocess_nagano.py --help
+```
+
