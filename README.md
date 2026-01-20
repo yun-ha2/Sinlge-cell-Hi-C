@@ -193,3 +193,13 @@ Loop prediction performance of the fine-tuned scGRAPE model was evaluated using 
 - In contrast, scGRAPE predicted loops only at restricted locations guided by the learned latent representations, yielding a more balanced precision–recall trade-off.
 - In cross-dataset evaluation, performance decreased for all models; however, scGRAPE consistently produced fewer false-positive loops than scGSLoop.
 - Overall, models trained on mouse data showed more stable generalization than those trained on human data.
+
+### 3) TAD boundary prediction and biological validation
+We evaluated the consistency and biological validity of TAD boundaries predicted from pretrained latent representations.
+<p align="center">
+  <img src="figures/figure7.png" width="1000">
+</p>
+- TAD boundaries predicted from different clusters were well aligned with the global consensus boundaries.
+- Predicted TAD boundaries showed clear enrichment of CTCF and H3K27ac signals within ±50 kb of the boundary.
+- In contrast, boundaries predicted by scGSLoop showed weaker alignment with epigenetic signals.
+- TAD boundary length distributions and inter-cluster similarities were highly consistent, indicating no cluster-specific structural differences.
