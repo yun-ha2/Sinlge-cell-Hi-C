@@ -183,7 +183,13 @@ optional arguments:
 
 
 ### 2) Loop prediction after fine-tuning
-
+Loop prediction performance of the fine-tuned scGRAPE model was evaluated using the F1 score with respect to reference loop sets. Loops were defined as bin pairs within a 1 Mb genomic window whose sigmoid activation exceeded 0.9 in the latent space.
 <p align="center">
   <img src="figures/figure6.png" width="900">
 </p>
+
+- In within-dataset evaluation, scGRAPE achieved higher F1 scores than the baseline method (scGSLoop) on both the mouse embryonic stem cell (Nagano) and human prefrontal cortex (Lee) datasets.
+- scGSLoop exhibited high recall but predicted most bin pairs as loops, resulting in an excessive number of false positives.
+- In contrast, scGRAPE predicted loops only at restricted locations guided by the learned latent representations, yielding a more balanced precision–recall trade-off.
+- In cross-dataset evaluation, performance decreased for all models; however, scGRAPE consistently produced fewer false-positive loops than scGSLoop.
+- Overall, models trained on mouse data showed more stable generalization than those trained on human data.
