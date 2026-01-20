@@ -170,8 +170,13 @@ optional arguments:
 ```
 
 ## Results
+
+### 1) Cell structure and clustering patterns in latent space
 <p align="center">
   <img src="figures/figure4.png" width="1000">
 </p>
 
-
+- Latent embeddings were extracted from pretrained models and clustered across multiple resolutions (1 Mb, 500 kb, 100 kb, 10 kb).
+- In the Nagano mouse embryonic stem cell dataset, latent embeddings formed a continuous trajectory corresponding to cell-cycle progression (G1 → early S → mid S → G2), indicating that scGRAPE preserves dynamic biological structure in latent space.
+- In the Lee human prefrontal cortex dataset, major glial cell types (e.g., oligodendrocytes and microglia) were clearly separable, whereas neuronal subtypes were not reliably resolved in the latent space.
+- As resolution increased, extreme sparsity in scHi-C data reduced cluster separability, highlighting fundamental limits imposed by single-cell contact sparsity.
