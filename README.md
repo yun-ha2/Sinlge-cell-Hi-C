@@ -181,3 +181,9 @@ optional arguments:
 - In the Lee human prefrontal cortex dataset, major glial cell types (e.g., oligodendrocytes and microglia) were clearly separable, whereas neuronal subtypes were not reliably resolved in the latent space.
 - As resolution increased, extreme sparsity in scHi-C data reduced cluster separability, highlighting fundamental limits imposed by single-cell contact sparsity.
 
+
+### 2) Loop prediction after fine-tuning
+
+<p align="center">
+  <img src="figures/figure5.png" width="1000">
+</p>
