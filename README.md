@@ -62,10 +62,41 @@ python scripts/preprocess_nagano.py --help
 ```
 
 ### 4. Train the model
-scGRAPE training is performed in two stages: (i) pretraining a GAE-FiLM encoder for robust representation learning from sparse scHi-C graphs, followed by (ii) task-specific fine-tuning with an explicit loop prediction head.
+Model training is performed in two stages: pretraining for representation learning and fine-tuning for loop prediction.
+
+#### Pretraining
+`pretrain_gae.py` trains a Graph Autoencoder (GAE-FiLM) on scHi-C graphs to learn
+node and graph-level latent representations.
+
+- Optimizes **graph reconstruction (BCE)**
+- Includes **cosine alignment to PCA-based cell embeddings** to encode cell-level structural variation
 
 ```code
-python scripts/pretrain_gae.py
-python scripts/finetune_loops.py
+python pretrain_gae.py [-h]
+required arguments:
+    --dataset {lee,nagano,pt}       Dataset type
+    --train_dir TRAIN_DIR           Directory containing training .pt graphs
+    --val_dir VAL_DIR               Directory containing validation .pt graphs
+    --out_dir OUT_DIR               Output directory for checkpoints and logs
+
+optional arguments:
+  --cell_emb_dir CELL_EMB_DIR      Directory with cell_embeddings.npy and cell_names.txt
+  --epochs EPOCHS                  Number of training epochs (default: 150)
+  --lr LR                          Learning rate (default: 1e-3)
+  --hidden_dim HIDDEN_DIM          Encoder hidden dimension (default: 128)
+  --z_dim Z_DIM                    Latent embedding dimension (default: 32)
 ```
+
+#### Fine-tuning (Loop prediction)
+python finetune_loops.py [-h]
+required arguments:
+  --train_dir TRAIN_DIR            Directory containing training .pt graphs
+  --val_dir VAL_DIR                Directory containing validation .pt graphs
+  --label_path LABEL_PATH          Dataset-specific label/metadata file
+  --cell_emb_dir CELL_EMB_DIR      Directory with PCA-based cell embeddings
+  --ref_loop_path REF_LOOP_PATH    Reference loop file (.pt)
+  --pretrain_model PRETRAIN_MODEL  Path to pretrained model checkpoint
+  --out_dir OUT_DIR                Output directory for fine-tuned models
+```
+
 
