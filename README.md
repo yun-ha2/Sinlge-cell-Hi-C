@@ -54,10 +54,18 @@ python scripts/merge_ldp_dna.py
 - Details: src/features/README.md
 
 ### 3. Build scHi-C graphs
-Combine standardized contact matrices and node features into per-(cell, chromosome) graph objects compatible with PyTorch Geometric(.pt).
+Combine standardized contact matrices and node features into per-(cell, chromosome) graph objects compatible with PyTorch Geometric (.pt).
 
 ```code
 python scripts/preprocess_lee.py --help
 python scripts/preprocess_nagano.py --help
+```
+
+### 4. Train the model
+scGRAPE training is performed in two stages: (i) pretraining a GAE-FiLM encoder for robust representation learning from sparse scHi-C graphs, followed by (ii) task-specific fine-tuning with an explicit loop prediction head.
+
+```code
+python scripts/pretrain_gae.py
+python scripts/finetune_loops.py
 ```
 
