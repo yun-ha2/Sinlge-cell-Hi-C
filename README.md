@@ -204,3 +204,17 @@ We evaluated the consistency and biological validity of TAD boundaries predicted
 - Predicted TAD boundaries showed clear enrichment of CTCF and H3K27ac signals within ±50 kb of the boundary.
 - In contrast, boundaries predicted by scGSLoop showed weaker alignment with epigenetic signals.
 - TAD boundary length distributions and inter-cluster similarities were highly consistent, indicating no cluster-specific structural differences.
+
+### 4) A/B compartment prediction and biological validation
+
+We applied a 2-state GMM-HMM to latent embeddings to assign A/B compartments and derived consensus profiles at the global and cluster levels.
+
+<p align="center">
+  <img src="figures/figure8.png" width="1000">
+</p>
+
+- The global consensus closely matched bulk Hi-C PC1-based compartment patterns and aligned with GC-rich A compartments.
+- Cluster-level analysis revealed distinct compartment patterns, with regions consistently assigned to A or B in a cluster-specific manner.
+- Regions classified as A compartments showed significantly higher H3K27ac enrichment, increasing with compartment score.
+- A-score distributions and flipping matrices indicated asymmetric compartment differences between clusters.
+
