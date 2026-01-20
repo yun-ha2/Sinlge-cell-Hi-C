@@ -139,7 +139,8 @@ optional arguments:
 ```
 #### A/B Compartment
 Compartment analysis is performed in two steps: (i) training a GMM-HMM and (ii) applying it to latent embeddings.
-**Train GMM-HMM for compartment calling** 
+
+##### Train GMM-HMM for compartment calling 
 ```code
 python scripts/train_compartment_hmm.py [-h]
 required arguments:
@@ -153,7 +154,7 @@ optional arguments:
   --standardize                    Standardize embeddings before training
   --pca_dim INT                    PCA dimension (0 to disable)
 ```
-**Infer A/B compartments**
+##### Infer A/B compartments
 ```code
 python python scripts/downstream/compartment_from_z.py [-h]
 required arguments:
