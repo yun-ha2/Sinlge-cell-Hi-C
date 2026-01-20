@@ -199,6 +199,7 @@ We evaluated the consistency and biological validity of TAD boundaries predicted
 <p align="center">
   <img src="figures/figure7.png" width="1000">
 </p>
+
 - TAD boundaries predicted from different clusters were well aligned with the global consensus boundaries.
 - Predicted TAD boundaries showed clear enrichment of CTCF and H3K27ac signals within ±50 kb of the boundary.
 - In contrast, boundaries predicted by scGSLoop showed weaker alignment with epigenetic signals.
