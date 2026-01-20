@@ -218,3 +218,11 @@ We applied a 2-state GMM-HMM to latent embeddings to assign A/B compartments and
 - Regions classified as A compartments showed significantly higher H3K27ac enrichment, increasing with compartment score.
 - A-score distributions and flipping matrices indicated asymmetric compartment differences between clusters.
 
+---
+
+## Conclusion
+
+- We propose a graph-based representation learning framework that robustly captures cell-specific 3D genome organization from extremely sparse single-cell Hi-C data by integrating sequence-level, structural, and cell-level information.
+- By jointly embedding DNA sequence features and global cell-level variation into an aligned latent space, the model learns biologically meaningful representations beyond simple contact matrix reconstruction.
+- The learned latent representations consistently preserve multiscale chromatin structures, enabling accurate downstream inference of loops, TAD boundaries, and A/B compartments, even under severe sparsity.
+- Across mouse and human datasets, the framework captures cell-state–dependent structural variation while maintaining stable higher-order genomic features.
