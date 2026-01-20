@@ -72,7 +72,7 @@ node and graph-level latent representations.
 - Includes **cosine alignment to PCA-based cell embeddings** to encode cell-level structural variation
 
 ```code
-python pretrain_gae.py [-h]
+python scripts/pretrain_gae.py [-h]
 required arguments:
     --dataset {lee,nagano,pt}       Dataset type
     --train_dir TRAIN_DIR           Directory containing training .pt graphs
@@ -94,7 +94,7 @@ and optimizes a multi-task objective.
 - Supervised fine-tuning using reference chromatin loops
 
 ```code
-python finetune_loops.py [-h]
+python scripts/finetune_loops.py [-h]
 required arguments:
   --train_dir TRAIN_DIR            Directory containing training .pt graphs
   --val_dir VAL_DIR                Directory containing validation .pt graphs
@@ -105,5 +105,66 @@ required arguments:
   --out_dir OUT_DIR                Output directory for fine-tuned models
 ```
 
+### 5. Inference & Downstream Analysis
+scGRAPE supports multiple downstream analyses from pretrained or fine-tuned models. All inference steps operate on either scHi-C graphs (`.pt`) or latent embeddings (`.z.npz`) and are designed as standalone CLI tools.
 
+#### Loop Prediction
+Predict chromatin loops using a loop-fine-tuned scGRAPE model.
+```code
+python scripts/predict_loops.py [-h]
+  --pt_dir PT_DIR                  Directory containing .pt graphs (val/test)
+  --label_path LABEL_PATH          Dataset-specific label/metadata file
+  --weights WEIGHTS                Fine-tuned loop model checkpoint (.pt)
+  --out_dir OUT_DIR                Output directory for loop predictions
+```
 
+#### TAD Boundary Detection
+Extract TAD boundaries from latent node embeddings (`.z.npz`).
+```code
+python scripts/downstream/tad_from_z.py [-h]
+required arguments:
+  --z_dir Z_DIR                    Directory containing *.z.npz files
+  --out_dir OUT_DIR                Output directory
+
+optional arguments:
+  --binsize INT                    Bin size in bp (default: 10000)
+  --avg_tld_size_bins INT          Expected TLD size (bins)
+  --linkage STR                    Clustering linkage method (default: ward)
+  --use_pca                        Apply PCA before clustering
+  --pca_ncomp INT                  Number of PCA components
+  --ctcf_bed PATH                  CTCF motif BED file (optional)
+  --ctcf_window_bp INT             CTCF refinement window (bp)
+  --consensus_vote FLOAT           Consensus vote threshold
+  --consensus_min_sep_bins INT     Minimum boundary separation (bins)
+```
+#### A/B Compartment
+Compartment analysis is performed in two steps: (i) training a GMM-HMM and (ii) applying it to latent embeddings.
+**Train GMM-HMM for compartment calling** 
+```code
+python scripts/train_compartment_hmm.py [-h]
+required arguments:
+  --z_dir Z_DIR                    Directory containing z embedding files
+  --out_dir OUT_DIR                Output directory for trained models
+
+optional arguments:
+  --hmm_iter INT                   Number of HMM iterations (default: 100)
+  --train_max_seqs INT             Maximum training sequences
+  --seed INT                       Random seed
+  --standardize                    Standardize embeddings before training
+  --pca_dim INT                    PCA dimension (0 to disable)
+```
+**Infer A/B compartments**
+```code
+python python scripts/downstream/compartment_from_z.py [-h]
+required arguments:
+  --z_dir Z_DIR                    Directory containing *.z.npz files
+  --model_dir MODEL_DIR            Directory with trained GMM-HMM
+  --out_dir OUT_DIR                Output directory
+  --chrom_sizes PATH               Chromosome sizes file
+  --gc_table PATH                  GC content table
+
+optional arguments:
+  --resolution INT                 Bin resolution (default: 10000)
+  --coarsen_factor INT             Coarsening factor
+  --float_format STR               Output float format
+```
