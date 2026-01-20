@@ -17,7 +17,7 @@ This repository provides an end-to-end pipeline from raw scHi-C contact matrices
 ## Background
 
 <p align="center">
-  <img src="figures/figure2.png" width="1000">
+  <img src="figures/figure3.png" width="1000">
 </p>
 
 - Single-cell Hi-C (scHi-C) enables the investigation of 3D genome organization at single-cell resolution, but its extreme sparsity and noise severely limit the recovery of meaningful chromatin interaction signals and the interpretation of cell-to-cell structural variability.
