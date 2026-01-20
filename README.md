@@ -9,7 +9,7 @@ This repository provides an end-to-end pipeline from raw scHi-C contact matrices
 3D genome structure inference.
 
 <p align="center">
-  <img src="figures/figure1.png" width="500">
+  <img src="figures/figure1.png" width="1000">
 </p>
 
 ---
