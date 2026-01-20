@@ -28,3 +28,17 @@ This repository provides an end-to-end pipeline from raw scHi-C contact matrices
 
   
 --- 
+
+## Usage
+
+scGRAPE provides a modular pipeline for learning cell-level representations of 3D genome organization from single-cell Hi-C (scHi-C) data. Dataset-specific preprocessing is performed once, after which all downstream analyses operate on a unified graph representation.
+
+### 1. Preprocess raw scHi-C data
+
+Convert heterogeneous raw scHi-C formats into a standardized, chromosome-wise sparse matrix representation (.npz), and compute cell-level embeddings used for cosine alignment during training.
+
+```code
+python scripts/preprocess_lee.py --help
+python scripts/preprocess_nagano.py --help
+```
+- Details: src/preprocessing/README.md
