@@ -185,5 +185,5 @@ optional arguments:
 ### 2) Loop prediction after fine-tuning
 
 <p align="center">
-  <img src="figures/figure5.png" width="900">
+  <img src="figures/figure6.png" width="900">
 </p>
